@@ -1,62 +1,48 @@
-import tickets from "../assets/tickets.png";
-import tickets1 from "../assets/tickets1.png";
+import tickets from "../assets/tickets.png"; // 👈 use any image from assets
 
 export default function PassSection() {
+  const passes = [
+    { title: "Day-1", price: "1000/-", color: "from-pink-500 to-rose-400" },
+    { title: "Day-2", price: "1000/-", color: "from-sky-500 to-blue-400" },
+    { title: "Day 1&2", price: "1500/-", color: "from-purple-500 to-indigo-400" },
+  ];
+
   return (
-    <section className="relative w-full py-28 flex items-center justify-center">
+    <section className="relative w-full py-28 flex items-center justify-center bg-black overflow-hidden">
       {/* Blurred Background */}
-      <div className="absolute inset-0 h-[120%]">
+      <div className="absolute inset-0">
         <img
           src={tickets}
           alt="Background"
-          className="w-full h-full object-cover blur-lg opacity-40"
+          className="w-full h-full object-cover blur-2xl opacity-30"
         />
       </div>
 
-      {/* Overlay to darken slightly */}
-      <div className="absolute inset-0 bg-black/30"></div>
-
       {/* Foreground Content */}
       <div className="relative z-10 flex flex-col md:flex-row items-center justify-between w-11/12 max-w-7xl mx-auto">
-        {/* Left Image (normal, clear) */}
-        <div className="w-full md:w-1/2 flex justify-center">
-          <img
-            src={tickets}
-            alt="Booking Tickets"
-            className="w-[28rem] drop-shadow-2xl"
-          />
+        {/* Left Illustration */}
+        <div className="w-full md:w-1/2 flex justify-center mb-10 md:mb-0">
+          <h2 className="text-4xl md:text-5xl font-bold text-white text-center md:text-left">
+            Choose Your Pass 🎟️
+          </h2>
         </div>
 
         {/* Right Content */}
-        <div className="w-full md:w-1/2 flex flex-col items-center text-center space-y-6">
-          <h2 className="text-4xl font-bold text-white">Choose Your Pass</h2>
-
+        <div className="w-full md:w-1/2 flex flex-col items-center text-center space-y-8">
           {/* Ticket Styled Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-md">
-            {[
-              { title: "Day-1", price: "1000/-" },
-              { title: "Day-2", price: "1000/-" },
-              { title: "Day 1&2", price: "1500/-" },
-            ].map((pass, idx) => (
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-lg">
+            {passes.map((pass, idx) => (
               <div
                 key={idx}
-                className="relative w-full h-40 flex items-center justify-center"
+                className={`relative bg-gradient-to-r ${pass.color} text-white rounded-2xl shadow-xl flex flex-col items-center justify-center p-6 h-28 transform transition hover:scale-105`}
               >
-                {/* Ticket Background */}
-                <img
-                  src={tickets1}
-                  alt="Ticket"
-                  className="absolute inset-0 w-full h-full object-cover rounded-xl shadow-lg"
-                />
+                {/* Decorative Notches */}
+                <span className="absolute top-1/2 left-0 -translate-y-1/2 w-6 h-6 bg-black rounded-full"></span>
+                <span className="absolute top-1/2 right-0 -translate-y-1/2 w-6 h-6 bg-black rounded-full"></span>
 
-                {/* Text Overlay */}
-                <div className="relative z-10 text-white text-center">
-                  <h3 className="text-xl font-bold drop-shadow-md">{pass.title}</h3>
-                  <p className="mt-2 text-lg font-semibold drop-shadow-md">{pass.price}</p>
-                </div>
-
-                {/* Dark overlay for better readability */}
-                <div className="absolute inset-0 bg-black/40 rounded-xl"></div>
+                {/* Content */}
+                <h3 className="text-xl kaushan-script-regular font-bold">{pass.title}</h3>
+                <p className="mt-2 text-lg kaushan-script-regular font-semibold">{pass.price}</p>
               </div>
             ))}
           </div>
