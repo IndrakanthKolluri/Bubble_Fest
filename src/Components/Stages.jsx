@@ -29,71 +29,51 @@ export default function Stages() {
 
         {/* Collage Section */}
         <div className="mb-16">
-          {/* Mobile: simple grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:hidden">
-            {[
-              collage1,
-              collage2,
-              collage3,
-              collage4,
-              collage5,
-              collage6,
-              collage7,
-              collage8,
-            ].map((img, idx) => (
-              <img
-                key={idx}
-                src={img}
-                alt={`Collage ${idx + 1}`}
-                className="w-full h-40 object-cover rounded-xl shadow-md"
-              />
-            ))}
-          </div>
+  {/* Overlapping fun layout for all screens */}
+  <div className="relative w-full h-[400px] sm:h-[600px] overflow-hidden">
+    <img
+      src={collage1}
+      alt="Collage 1"
+      className="absolute top-0 left-[2%] w-28 h-20 sm:w-72 sm:h-52 object-cover rounded-xl shadow-xl transform rotate-[-8deg]"
+    />
+    <img
+      src={collage2}
+      alt="Collage 2"
+      className="absolute top-10 left-[15%] w-32 h-24 sm:w-80 sm:h-56 object-cover rounded-xl shadow-xl transform rotate-[6deg]"
+    />
+    <img
+      src={collage3}
+      alt="Collage 3"
+      className="absolute top-24 left-[30%] w-28 h-20 sm:w-72 sm:h-52 object-cover rounded-xl shadow-xl transform rotate-[-4deg]"
+    />
+    <img
+      src={collage4}
+      alt="Collage 4"
+      className="absolute top-28 left-[50%] w-24 h-20 sm:w-64 sm:h-48 object-cover rounded-xl shadow-xl transform rotate-[10deg]"
+    />
+    <img
+      src={collage5}
+      alt="Collage 5"
+      className="absolute top-44 left-[20%] w-28 h-20 sm:w-72 sm:h-52 object-cover rounded-xl shadow-xl transform rotate-[-5deg]"
+    />
+    <img
+      src={collage6}
+      alt="Collage 6"
+      className="absolute top-60 left-[8%] w-24 h-20 sm:w-64 sm:h-48 object-cover rounded-xl shadow-xl transform rotate-[8deg]"
+    />
+    <img
+      src={collage7}
+      alt="Collage 7"
+      className="absolute top-56 left-[55%] w-28 h-20 sm:w-72 sm:h-52 object-cover rounded-xl shadow-xl transform rotate-[-6deg]"
+    />
+    <img
+      src={collage8}
+      alt="Collage 8"
+      className="absolute top-16 left-[70%] w-28 h-20 sm:w-72 sm:h-52 object-cover rounded-xl shadow-xl transform rotate-[5deg]"
+    />
+  </div>
+</div>
 
-          {/* Desktop: overlapping fun layout */}
-          <div className="hidden md:block relative w-full h-[600px]">
-            <img
-              src={collage1}
-              alt="Collage 1"
-              className="absolute top-0 left-[5%] w-72 h-52 object-cover rounded-xl shadow-xl transform rotate-[-8deg]"
-            />
-            <img
-              src={collage2}
-              alt="Collage 2"
-              className="absolute top-10 left-[20%] w-80 h-56 object-cover rounded-xl shadow-xl transform rotate-[6deg]"
-            />
-            <img
-              src={collage3}
-              alt="Collage 3"
-              className="absolute top-32 left-[35%] w-72 h-52 object-cover rounded-xl shadow-xl transform rotate-[-4deg]"
-            />
-            <img
-              src={collage4}
-              alt="Collage 4"
-              className="absolute top-40 left-[50%] w-64 h-48 object-cover rounded-xl shadow-xl transform rotate-[10deg]"
-            />
-            <img
-              src={collage5}
-              alt="Collage 5"
-              className="absolute top-60 left-[25%] w-72 h-52 object-cover rounded-xl shadow-xl transform rotate-[-5deg]"
-            />
-            <img
-              src={collage6}
-              alt="Collage 6"
-              className="absolute top-80 left-[10%] w-64 h-48 object-cover rounded-xl shadow-xl transform rotate-[8deg]"
-            />
-            <img
-              src={collage7}
-              alt="Collage 7"
-              className="absolute top-72 left-[60%] w-72 h-52 object-cover rounded-xl shadow-xl transform rotate-[-6deg]"
-            />
-            <img
-              src={collage8}
-              alt="Collage 8"
-              className="absolute top-20 left-[75%] w-72 h-52 object-cover rounded-xl shadow-xl transform rotate-[5deg]"
-            />
-          </div>
-        </div>
 
         {/* Stage Cards */}
         <div className="space-y-16 mb-20">
