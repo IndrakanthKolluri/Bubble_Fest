@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import collage1 from "../assets/collage1.jpg";
 import collage2 from "../assets/collage2.webp";
 import collage3 from "../assets/collage3.jpg";
@@ -11,6 +11,15 @@ import collage8 from "../assets/collage8.jpg";
 
 export default function Stages() {
   const [hoveredStage, setHoveredStage] = useState(null);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  // Track screen size to switch layout
+  useEffect(() => {
+    const checkScreen = () => setIsDesktop(window.innerWidth >= 1024); // lg breakpoint
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
 
   // Floating animation for collage images
   const floatAnimation = (delay) => ({
@@ -39,33 +48,33 @@ export default function Stages() {
   // Stage card animation
   const stageCardAnimation = {
     hidden: { opacity: 0, x: -100, rotateY: -15 },
-    visible: { 
-      opacity: 1, 
-      x: 0, 
+    visible: {
+      opacity: 1,
+      x: 0,
       rotateY: 0,
-      transition: { 
-        type: "spring", 
-        damping: 15, 
+      transition: {
+        type: "spring",
+        damping: 15,
         stiffness: 100,
-        duration: 0.8
-      } 
-    }
+        duration: 0.8,
+      },
+    },
   };
 
   // Reverse stage card animation
   const reverseStageCardAnimation = {
     hidden: { opacity: 0, x: 100, rotateY: 15 },
-    visible: { 
-      opacity: 1, 
-      x: 0, 
+    visible: {
+      opacity: 1,
+      x: 0,
       rotateY: 0,
-      transition: { 
-        type: "spring", 
-        damping: 15, 
+      transition: {
+        type: "spring",
+        damping: 15,
         stiffness: 100,
-        duration: 0.8
-      } 
-    }
+        duration: 0.8,
+      },
+    },
   };
 
   // Text animation
@@ -76,14 +85,39 @@ export default function Stages() {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
+
+  // Layout positions
+  const mobileLeft = [5, 20, 30, 45, 15, 5, 50, 65, 35, 10, 55, 25];
+  const mobileTop = [5, 15, 30, 25, 50, 65, 55, 20, 70, 40, 10, 60];
+
+  const desktopLeft = [5, 20, 35, 55, 15, 5, 60, 75, 40, 10, 70, 25];
+  const desktopTop = [5, 15, 30, 25, 50, 65, 55, 20, 70, 40, 10, 60];
+
+  const collageImages = useMemo(
+    () => [
+      collage1,
+      collage2,
+      collage3,
+      collage4,
+      collage5,
+      collage6,
+      collage7,
+      collage8,
+      collage1,
+      collage3,
+      collage5,
+      collage7,
+    ],
+    []
+  );
 
   return (
     <section id="stages" className="relative py-20 overflow-hidden">
-      {/* Animated Background with Bubbles */}
+      {/* Background with blur + bubbles */}
       <div className="absolute inset-0 overflow-hidden">
         <img
           src={collage4}
@@ -91,8 +125,6 @@ export default function Stages() {
           className="w-full h-full object-cover blur-lg opacity-30"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/70 to-indigo-900/70"></div>
-        
-        {/* Animated floating bubbles */}
         {[...Array(15)].map((_, i) => (
           <motion.div
             key={i}
@@ -114,7 +146,7 @@ export default function Stages() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-6">
+      <div className="relative z-10 container mx-auto px-2">
         {/* Heading */}
         <motion.div
           className="text-center mb-16"
@@ -132,70 +164,54 @@ export default function Stages() {
           >
             3 Magical Stages
           </motion.h2>
-          <motion.div 
-            className="text-4xl"
-            variants={textAnimation}
-          >
+          <motion.div className="text-4xl" variants={textAnimation}>
             ✨🎵🎤
           </motion.div>
         </motion.div>
 
-        {/* Enhanced Collage Section with Larger Images */}
-       <div className="mb-20">
-  <motion.div
-    className="relative w-full h-[90vh] min-h-[450px] max-h-[850px] overflow-hidden"
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true }}
-    variants={{
-      hidden: {},
-      visible: { transition: { staggerChildren: 0.15 } },
-    }}
-  >
-    {[
-      collage1, collage2, collage3, collage4, 
-      collage5, collage6, collage7, collage8, 
-      collage1, collage3, collage5, collage7 // repeat to make 12
-    ].map((img, i) => (
-      <motion.div
-        key={i}
-        className="absolute"
-        style={{
-          left: `${[5, 20, 35, 55, 15, 5, 60, 75, 40, 10, 70, 25][i]}%`,
-          top: `${[5, 15, 30, 25, 50, 65, 55, 20, 70, 40, 10, 60][i]}%`,
-          width: 'clamp(140px, 18vw, 240px)',   // bigger images
-          height: 'clamp(120px, 15vw, 200px)', // taller
-        }}
-        variants={{
-          hidden: { opacity: 0, scale: 0.8, y: 30 },
-          visible: {
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            transition: { 
-              duration: 0.8, 
-              type: "spring",
-              bounce: 0.4
-            },
-          },
-        }}
-      >
-        <motion.img
-          src={img}
-          alt={`Collage ${i + 1}`}
-          className="w-full h-full object-cover rounded-xl shadow-2xl"
-          animate={floatAnimation(i)}
-          whileHover={{
-            scale: 1.1,
-            rotate: i % 2 === 0 ? -5 : 5,
-            zIndex: 50,
-            transition: { duration: 0.3 }
-          }}
-        />
-      </motion.div>
-    ))}
-  </motion.div>
-</div>
+        {/* Collage */}
+        <div className="mb-20">
+          <motion.div
+            className="relative w-full h-[90vh] min-h-[450px] max-h-[850px] overflow-hidden"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.15 } },
+            }}
+          >
+            {collageImages.map((img, i) => (
+              <motion.div
+                key={i}
+                className="absolute"
+                style={{
+                  left: `${isDesktop ? desktopLeft[i] : mobileLeft[i]}%`,
+                  top: `${isDesktop ? desktopTop[i] : mobileTop[i]}%`,
+                }}
+              >
+                <motion.img
+                  src={img}
+                  alt={`Collage ${i + 1}`}
+                  className={`object-cover rounded-xl shadow-2xl
+                    ${isDesktop
+                      ? "w-[clamp(140px,18vw,240px)] h-[clamp(120px,15vw,200px)]"
+                      : "w-[clamp(100px,15vw,200px)] h-[clamp(90px,12vw,180px)]"
+                    }`}
+                  animate={floatAnimation(i)}
+                  whileHover={{
+                    scale: 1.1,
+                    rotate: i % 2 === 0 ? -5 : 5,
+                    zIndex: 50,
+                    transition: { duration: 0.3 },
+                  }}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+
+
 
 
         {/* Stage Cards */}
