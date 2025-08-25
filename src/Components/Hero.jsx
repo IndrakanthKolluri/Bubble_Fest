@@ -1,16 +1,24 @@
 import bubble from "../assets/bubble.png";
-import heroBg from "../assets/hero_bg4.jpg";
 
 export default function Hero() {
   return (
-    <section
-      className="relative h-screen flex items-center bg-cover bg-center overflow-hidden px-6 md:px-10"
-      style={{ backgroundImage: `url(${heroBg})` }}
-    >
+    <section className="relative h-[100vh] flex items-center overflow-hidden px-6 md:px-10">
+      {/* Background Video */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <video
+          className="w-full h-full object-cover pointer-events-none"
+          src="https://res.cloudinary.com/dwxumbyfg/video/upload/v1756105634/Bubblefest_2025_is_Now_Open_d8hx2c.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+      </div>
+
       {/* Dark overlay for contrast */}
       <div className="absolute inset-0 pointer-events-none z-20 bg-black/40" />
 
-      {/* Floating Bubbles (spread across full width) */}
+      {/* Floating Bubbles */}
       {[...Array(15)].map((_, i) => (
         <img
           key={i}
@@ -18,7 +26,7 @@ export default function Hero() {
           alt=""
           className="bubble-img absolute bottom-0 pointer-events-none z-10"
           style={{
-            left: `${Math.random() * 100}%`, // full width spread
+            left: `${Math.random() * 100}%`,
             width: `${50 + Math.random() * 80}px`,
             animationDuration: `${5 + Math.random() * 6}s`,
             animationDelay: `${Math.random() * 4}s`,
@@ -26,9 +34,9 @@ export default function Hero() {
         />
       ))}
 
-      {/* Text Content (card on left, text centered) */}
+      {/* Text Content */}
       <div className="relative z-30 max-w-xl text-white ml-auto">
-        <div className=" p-6 md:p-8  text-center flex flex-col items-center justify-center">
+        <div className="p-6 md:p-8 text-center flex flex-col items-center justify-center">
           <h1 className="text-5xl md:text-7xl chango-regular drop-shadow-lg">
             Bubble Fest
           </h1>
