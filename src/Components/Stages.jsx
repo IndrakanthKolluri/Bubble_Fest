@@ -143,7 +143,7 @@ export default function Stages() {
         {/* Enhanced Collage Section with Larger Images */}
        <div className="mb-20">
   <motion.div
-    className="relative w-full h-[50vh] min-h-[400px] max-h-[800px] overflow-hidden"
+    className="relative w-full h-[90vh] min-h-[450px] max-h-[850px] overflow-hidden"
     initial="hidden"
     whileInView="visible"
     viewport={{ once: true }}
@@ -152,263 +152,303 @@ export default function Stages() {
       visible: { transition: { staggerChildren: 0.15 } },
     }}
   >
-    {[collage1, collage2, collage3, collage4, collage5, collage6, collage7, collage8].map(
-      (img, i) => (
-        <motion.div
-          key={i}
-          className="absolute"
-          style={{
-            left: `${[5, 20, 35, 55, 15, 5, 60, 75][i]}%`,
-            top: `${[5, 15, 30, 25, 50, 65, 55, 20][i]}%`,
-            width: 'clamp(120px, 15vw, 200px)',
-            height: 'clamp(100px, 12vw, 160px)',
-          }}
-          variants={{
-            hidden: { opacity: 0, scale: 0.8, y: 30 },
-            visible: {
-              opacity: 1,
-              scale: 1,
-              y: 0,
-              transition: { 
-                duration: 0.8, 
-                type: "spring",
-                bounce: 0.4
-              },
+    {[
+      collage1, collage2, collage3, collage4, 
+      collage5, collage6, collage7, collage8, 
+      collage1, collage3, collage5, collage7 // repeat to make 12
+    ].map((img, i) => (
+      <motion.div
+        key={i}
+        className="absolute"
+        style={{
+          left: `${[5, 20, 35, 55, 15, 5, 60, 75, 40, 10, 70, 25][i]}%`,
+          top: `${[5, 15, 30, 25, 50, 65, 55, 20, 70, 40, 10, 60][i]}%`,
+          width: 'clamp(140px, 18vw, 240px)',   // bigger images
+          height: 'clamp(120px, 15vw, 200px)', // taller
+        }}
+        variants={{
+          hidden: { opacity: 0, scale: 0.8, y: 30 },
+          visible: {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            transition: { 
+              duration: 0.8, 
+              type: "spring",
+              bounce: 0.4
             },
+          },
+        }}
+      >
+        <motion.img
+          src={img}
+          alt={`Collage ${i + 1}`}
+          className="w-full h-full object-cover rounded-xl shadow-2xl"
+          animate={floatAnimation(i)}
+          whileHover={{
+            scale: 1.1,
+            rotate: i % 2 === 0 ? -5 : 5,
+            zIndex: 50,
+            transition: { duration: 0.3 }
           }}
-        >
-          <motion.img
-            src={img}
-            alt={`Collage ${i + 1}`}
-            className="w-full h-full object-cover rounded-xl shadow-2xl"
-            animate={floatAnimation(i)}
-            whileHover={{
-              scale: 1.1,
-              rotate: i % 2 === 0 ? -5 : 5,
-              zIndex: 50,
-              transition: { duration: 0.3 }
-            }}
-          />
-        </motion.div>
-      )
-    )}
+        />
+      </motion.div>
+    ))}
   </motion.div>
 </div>
+
 
         {/* Stage Cards */}
         <div className="space-y-24 mb-20">
           {/* Stage A */}
           <motion.div
-            className="flex flex-col md:flex-row items-center gap-10"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.4 }}
-            variants={stageCardAnimation}
-            onHoverStart={() => setHoveredStage('a')}
-            onHoverEnd={() => setHoveredStage(null)}
-          >
-            <motion.div 
-              className="w-full md:w-1/2"
-              animate={{
-                y: hoveredStage === 'a' ? -10 : 0,
-                transition: { duration: 0.4 }
-              }}
-            >
-              <img
-                src={collage1}
-                alt="Stage A"
-                className="w-full h-96 object-cover rounded-2xl shadow-xl"
-              />
-            </motion.div>
-            <motion.div 
-              className="md:w-1/2 text-center"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <motion.h3 
-                className="text-3xl font-bold mb-6 text-pink-600"
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                Stage A 🎶
-              </motion.h3>
-              <motion.ul 
-                className="text-white text-lg space-y-3 mb-6"
-                variants={{
-                  hidden: {},
-                  visible: { transition: { staggerChildren: 0.1 } },
-                }}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                {['Musical Concert', 'Bollywood DJ', 'Techno Troop', 'Fire Show', 'LED Show', 'Bubble Show'].map((item, i) => (
-                  <motion.li 
-                    key={i}
-                    variants={textAnimation}
-                    className="flex items-center justify-center"
-                  >
-                    <span className="mr-2">✨</span> {item}
-                  </motion.li>
-                ))}
-              </motion.ul>
-              <motion.p 
-                className="text-gray-200 italic"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.8, duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                Experience a magical evening filled with music, lights, and unforgettable performances.
-              </motion.p>
-            </motion.div>
-          </motion.div>
+  className="flex flex-col md:flex-row items-center gap-10"
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.4 }}
+  variants={stageCardAnimation}
+  onHoverStart={() => setHoveredStage('a')}
+  onHoverEnd={() => setHoveredStage(null)}
+>
+<motion.div
+  className="w-full md:w-1/2"
+  animate={{
+    y: hoveredStage === 'a' ? -10 : 0,
+    transition: { duration: 0.4 },
+  }}
+>
+  <div className="w-full aspect-video md:h-96">
+    <video
+      src="https://res.cloudinary.com/dwxumbyfg/video/upload/v1756115757/medium-vecteezy_the-crowd-at-the-concert-and-blurred-stage-lights-of-people_7407980_medium_ldig0g.mp4"
+      className="w-full h-full object-cover rounded-2xl shadow-xl"
+      autoPlay
+      muted
+      loop
+      playsInline
+    />
+  </div>
+</motion.div>
+
+
+  <motion.div
+    className="md:w-1/2 text-center"
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    transition={{ delay: 0.3, duration: 0.6 }}
+    viewport={{ once: true }}
+  >
+    <motion.h3
+      className="text-3xl font-bold mb-6 text-pink-600"
+      initial={{ opacity: 0, y: -20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.4, duration: 0.6 }}
+      viewport={{ once: true }}
+    >
+      Stage A 🎶
+    </motion.h3>
+
+    <motion.ul
+      className="text-white text-lg space-y-3 mb-6"
+      variants={{
+        hidden: {},
+        visible: { transition: { staggerChildren: 0.1 } },
+      }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+    >
+      {[
+        'Musical Concert',
+        'Bollywood DJ',
+        'Techno Troop',
+        'Fire Show',
+        'LED Show',
+        'Bubble Show',
+      ].map((item, i) => (
+        <motion.li
+          key={i}
+          variants={textAnimation}
+          className="flex items-center justify-center"
+        >
+          <span className="mr-2">✨</span> {item}
+        </motion.li>
+      ))}
+    </motion.ul>
+
+    <motion.p
+      className="text-gray-200 italic"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ delay: 0.8, duration: 0.6 }}
+      viewport={{ once: true }}
+    >
+      Experience a magical evening filled with music, lights, and unforgettable performances.
+    </motion.p>
+  </motion.div>
+</motion.div>
+
 
           {/* Stage B */}
           <motion.div
-            className="flex flex-col md:flex-row-reverse items-center gap-10"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.4 }}
-            variants={reverseStageCardAnimation}
-            onHoverStart={() => setHoveredStage('b')}
-            onHoverEnd={() => setHoveredStage(null)}
-          >
-            <motion.div 
-              className="w-full md:w-1/2"
-              animate={{
-                y: hoveredStage === 'b' ? -10 : 0,
-                transition: { duration: 0.4 }
-              }}
-            >
-              <img
-                src={collage4}
-                alt="Stage B"
-                className="w-full h-96 object-cover rounded-2xl shadow-xl"
-              />
-            </motion.div>
-            <motion.div 
-              className="md:w-1/2 text-center"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <motion.h3 
-                className="text-3xl font-bold mb-6 text-sky-600"
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                Stage B 🎤
-              </motion.h3>
-              <motion.ul 
-                className="text-white text-lg space-y-3 mb-6"
-                variants={{
-                  hidden: {},
-                  visible: { transition: { staggerChildren: 0.1 } },
-                }}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                {['Karaoke', 'Live Band', 'DJ Nights', 'Rock Guitar Music'].map((item, i) => (
-                  <motion.li 
-                    key={i}
-                    variants={textAnimation}
-                    className="flex items-center justify-center"
-                  >
-                    <span className="mr-2">🎵</span> {item}
-                  </motion.li>
-                ))}
-              </motion.ul>
-              <motion.p 
-                className="text-gray-200 italic"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.8, duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                A stage packed with pure energy and rhythm, perfect for music lovers of all ages.
-              </motion.p>
-            </motion.div>
-          </motion.div>
+  className="flex flex-col md:flex-row-reverse items-center gap-10"
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.4 }}
+  variants={reverseStageCardAnimation}
+  onHoverStart={() => setHoveredStage('b')}
+  onHoverEnd={() => setHoveredStage(null)}
+>
+<motion.div 
+  className="w-full md:w-1/2"
+  animate={{
+    y: hoveredStage === 'b' ? -10 : 0,
+    transition: { duration: 0.4 }
+  }}
+>
+  <div className="w-full aspect-video md:h-96">
+    <video
+      src="https://res.cloudinary.com/dwxumbyfg/video/upload/v1756116339/medium-vecteezy_asian-vocal-rock-star-performing-on-stage_2331862_medium_guxaac.mp4"
+      autoPlay
+      muted
+      loop
+      playsInline
+      className="w-full h-full object-cover rounded-2xl shadow-xl"
+    />
+  </div>
+</motion.div>
+
+
+  <motion.div 
+    className="md:w-1/2 text-center"
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    transition={{ delay: 0.3, duration: 0.6 }}
+    viewport={{ once: true }}
+  >
+    <motion.h3 
+      className="text-3xl font-bold mb-6 text-sky-600"
+      initial={{ opacity: 0, y: -20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.4, duration: 0.6 }}
+      viewport={{ once: true }}
+    >
+      Stage B 🎤
+    </motion.h3>
+
+    <motion.ul 
+      className="text-white text-lg space-y-3 mb-6"
+      variants={{
+        hidden: {},
+        visible: { transition: { staggerChildren: 0.1 } },
+      }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+    >
+      {['Karaoke', 'Live Band', 'DJ Nights', 'Rock Guitar Music'].map((item, i) => (
+        <motion.li 
+          key={i}
+          variants={textAnimation}
+          className="flex items-center justify-center"
+        >
+          <span className="mr-2">🎵</span> {item}
+        </motion.li>
+      ))}
+    </motion.ul>
+
+    <motion.p 
+      className="text-gray-200 italic"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ delay: 0.8, duration: 0.6 }}
+      viewport={{ once: true }}
+    >
+      A stage packed with pure energy and rhythm, perfect for music lovers of all ages.
+    </motion.p>
+  </motion.div>
+</motion.div>
+
 
           {/* Stage C */}
           <motion.div
-            className="flex flex-col md:flex-row items-center gap-10"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.4 }}
-            variants={stageCardAnimation}
-            onHoverStart={() => setHoveredStage('c')}
-            onHoverEnd={() => setHoveredStage(null)}
-          >
-            <motion.div 
-              className="w-full md:w-1/2"
-              animate={{
-                y: hoveredStage === 'c' ? -10 : 0,
-                transition: { duration: 0.4 }
-              }}
-            >
-              <img
-                src={collage2}
-                alt="Stage C"
-                className="w-full h-96 object-cover rounded-2xl shadow-xl"
-              />
-            </motion.div>
-            <motion.div 
-              className="md:w-1/2 text-center"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <motion.h3 
-                className="text-3xl font-bold mb-6 text-yellow-600"
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                Stage C 🎯
-              </motion.h3>
-              <motion.ul 
-                className="text-white text-lg space-y-3 mb-6"
-                variants={{
-                  hidden: {},
-                  visible: { transition: { staggerChildren: 0.1 } },
-                }}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                {['Fun Games', 'Kids Activities', 'Family Competitions', 'Interactive Entertainment'].map((item, i) => (
-                  <motion.li 
-                    key={i}
-                    variants={textAnimation}
-                    className="flex items-center justify-center"
-                  >
-                    <span className="mr-2">🎮</span> {item}
-                  </motion.li>
-                ))}
-              </motion.ul>
-              <motion.p 
-                className="text-gray-200 italic"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.8, duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                Endless laughter and joy for both kids and adults with exciting games and challenges.
-              </motion.p>
-            </motion.div>
-          </motion.div>
+  className="flex flex-col md:flex-row items-center gap-10"
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.4 }}
+  variants={stageCardAnimation}
+  onHoverStart={() => setHoveredStage('c')}
+  onHoverEnd={() => setHoveredStage(null)}
+>
+  <motion.div 
+  className="w-full md:w-1/2"
+  animate={{
+    y: hoveredStage === 'c' ? -10 : 0,
+    transition: { duration: 0.4 }
+  }}
+>
+  <div className="w-full aspect-video md:h-96">
+    <video
+      src="https://res.cloudinary.com/dwxumbyfg/video/upload/v1756117447/medium-vecteezy_a-mother-and-her-teenage-daughter-blowing-bubbles_34482268_medium_tlqtfa.mp4"
+      autoPlay
+      muted
+      loop
+      playsInline
+      className="w-full h-full object-cover rounded-2xl shadow-xl"
+    />
+  </div>
+</motion.div>
+
+
+  <motion.div 
+    className="md:w-1/2 text-center"
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    transition={{ delay: 0.3, duration: 0.6 }}
+    viewport={{ once: true }}
+  >
+    <motion.h3 
+      className="text-3xl font-bold mb-6 text-yellow-600"
+      initial={{ opacity: 0, y: -20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.4, duration: 0.6 }}
+      viewport={{ once: true }}
+    >
+      Stage C 🎯
+    </motion.h3>
+
+    <motion.ul 
+      className="text-white text-lg space-y-3 mb-6"
+      variants={{
+        hidden: {},
+        visible: { transition: { staggerChildren: 0.1 } },
+      }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+    >
+      {['Fun Games', 'Kids Activities', 'Family Competitions', 'Interactive Entertainment'].map((item, i) => (
+        <motion.li 
+          key={i}
+          variants={textAnimation}
+          className="flex items-center justify-center"
+        >
+          <span className="mr-2">🎮</span> {item}
+        </motion.li>
+      ))}
+    </motion.ul>
+
+    <motion.p 
+      className="text-gray-200 italic"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ delay: 0.8, duration: 0.6 }}
+      viewport={{ once: true }}
+    >
+      Endless laughter and joy for both kids and adults with exciting games and challenges.
+    </motion.p>
+  </motion.div>
+</motion.div>
+
         </div>
 
         {/* Enthusiasm Text */}
