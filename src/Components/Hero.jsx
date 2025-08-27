@@ -1,22 +1,28 @@
 import bubble from "../assets/bubble.png";
+import { useNavigate } from "react-router-dom";
+import Logo from "../assets/bubblelogo.png";
 
 export default function Hero() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/booking");
+  };
+
   return (
     <section className="relative h-[100vh] flex items-center overflow-hidden px-6 md:px-10">
       {/* Background Video */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <video
           className="w-full h-full object-cover pointer-events-none"
-          src="https://res.cloudinary.com/dwxumbyfg/video/upload/v1756105634/Bubblefest_2025_is_Now_Open_d8hx2c.mp4"
+          src="https://res.cloudinary.com/dwxumbyfg/video/upload/v1756202366/The_Most_UnBUBBLievable_Show_In_The_World___Gazillion_Bubble_Show_jqsyiu.mp4"
           autoPlay
           muted
           loop
           playsInline
+          style={{ filter: "brightness(0.7) contrast(1.2)" }} // ↓ Added this line
         />
       </div>
-
-      {/* Dark overlay for contrast */}
-      <div className="absolute inset-0 pointer-events-none z-20 bg-black/40" />
 
       {/* Floating Bubbles */}
       {[...Array(15)].map((_, i) => (
@@ -35,30 +41,18 @@ export default function Hero() {
       ))}
 
       {/* Text Content */}
-      <div className="relative z-30 max-w-xl text-white ml-auto">
+      <div className="relative z-30 max-w-full text-white text-center mx-auto">
         <div className="p-6 md:p-8 text-center flex flex-col items-center justify-center">
-          <h1 className="text-5xl md:text-7xl chango-regular drop-shadow-lg">
-            Bubble Fest
-          </h1>
-
-          <p className="mt-4 text-xl md:text-2xl font-semibold drop-shadow-md">
-            Sep 20 & 21 • 10AM - 10:30PM <br /> Emperium, Hyderabad
+          <img src={Logo} alt="Logo" className="w-64 h-64 mt-4" />
+          <p className="mt-4 chango-regular text-2xl md:text-3xl font-semibold drop-shadow-md">
+            Sep 20 & 21 • 10AM - 10:30PM <br /> Experium, Hyderabad
           </p>
-
-          <p className="mt-4 text-base md:text-lg text-gray-100 leading-relaxed drop-shadow-md">
-            Join us for two magical days filled with music, dance, fun activities,
-            and thousands of bubbles lighting up the sky. An experience like never
-            before awaits you!
-          </p>
-
-          <a
-            href="https://in.bookmyshow.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 inline-block bg-gradient-to-r from-pink-400 to-sky-400 px-6 py-3 rounded-full text-lg md:text-xl font-bold shadow-lg hover:scale-105 transition"
+          <p
+            onClick={handleClick}
+            className="mt-6 inline-block bg-gradient-to-r from-pink-400 to-sky-400 px-6 py-3 rounded-full text-lg md:text-xl font-bold shadow-lg hover:scale-105 transition cursor-pointer"
           >
             Book Now 🎟️
-          </a>
+          </p>
         </div>
       </div>
 

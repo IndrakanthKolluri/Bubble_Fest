@@ -1,25 +1,33 @@
 import { motion } from "framer-motion";
 import tickets from "../assets/tickets.png";
+import { useNavigate } from "react-router-dom";
 
 export default function PassSection() {
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/booking");
+  }
+
   const passes = [
     { 
       title: "Day-1", 
-      price: "1000/-", 
+      price: "699/-", 
       color: "from-pink-500 to-rose-400",
       bgColor: "bg-gradient-to-r from-pink-600/20 to-rose-500/20",
       perks: ["Main Stage Access", "Food Court Voucher", "Free Merch"]
     },
     { 
       title: "Day-2", 
-      price: "1000/-", 
+      price: "699/-", 
       color: "from-sky-500 to-blue-400",
       bgColor: "bg-gradient-to-r from-sky-600/20 to-blue-500/20",
       perks: ["All Stages Access", "2 Food Vouchers", "Priority Seating"]
     },
     { 
       title: "Day 1&2", 
-      price: "1500/-", 
+      price: "999/-", 
       color: "from-purple-500 to-indigo-400",
       bgColor: "bg-gradient-to-r from-purple-600/20 to-indigo-500/20",
       perks: ["VIP Access", "5 Food Vouchers", "Exclusive Merch", "Meet & Greet"]
@@ -140,13 +148,13 @@ export default function PassSection() {
         >
           <div className="text-center md:text-left">
             <motion.h2 
-              className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 mb-6"
+              className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 pb-2 mb-4"
               initial={{ opacity: 0, y: -20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.7 }}
               viewport={{ once: true }}
             >
-              Get Your Pass
+              Early Bird Offer
             </motion.h2>
             <motion.p 
               className="text-xl text-gray-200 mb-8"
@@ -155,7 +163,7 @@ export default function PassSection() {
               transition={{ delay: 0.4, duration: 0.7 }}
               viewport={{ once: true }}
             >
-              Choose your festival experience and join the bubble madness!
+              discounted prices for first 500 tickets!
             </motion.p>
             <motion.div 
               className="text-4xl"
@@ -235,13 +243,13 @@ export default function PassSection() {
                     <div className="w-full h-px bg-gradient-to-r from-transparent via-white/50 to-transparent my-4"></div>
                     
                     {/* CTA button */}
-                    <motion.button 
+                    {/* <motion.button 
                       className={`w-full py-2 bg-gradient-to-r ${pass.color} text-white font-semibold rounded-lg mt-auto`}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
                       Select Pass
-                    </motion.button>
+                    </motion.button> */}
                   </div>
                 </div>
                 
@@ -262,9 +270,9 @@ export default function PassSection() {
               whileHover="hover"
             >
               {/* Shine effect */}
-              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shine"></div>
+              <div onClick={handleClick} className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shine"></div>
               
-              Book All Passes Now 🎟️
+              Book Now 🎟️
             </motion.button>
           </motion.div>
         </motion.div>

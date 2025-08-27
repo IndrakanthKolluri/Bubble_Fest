@@ -1,59 +1,123 @@
 @import "tailwindcss";
 
+/* ================== Bubble Float-Up Animation ================== */
 @keyframes floatUp {
   0% {
     transform: translateY(0) scale(1);
-    opacity: 0.8;
+    opacity: 0.7;
   }
   50% {
+    transform: translateY(-50vh) scale(1.15);
     opacity: 1;
-    transform: translateY(-50vh) scale(1.2);
   }
   100% {
-    transform: translateY(-100vh) scale(0.8);
+    transform: translateY(-100vh) scale(0.85);
     opacity: 0;
   }
 }
 
 .bubble-img {
   position: absolute;
+  bottom: -120px; /* Start just below the viewport */
   animation-name: floatUp;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
+  pointer-events: none;
+  filter: blur(2px);
+  opacity: 0.8;
+  mix-blend-mode: screen;
+  will-change: transform, opacity; /* Better performance */
 }
 
+/* Glassmorphic effect for bubbles */
+.bubble-glass {
+  backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+}
+
+/* ================== Carousel Smooth Scroll ================== */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+  will-change: transform;
+}
+
+.animate-scroll-reverse {
+  animation: scroll 30s linear infinite reverse;
+  will-change: transform;
+}
+
+/* Pause scrolling on hover */
+.animate-scroll:hover,
+.animate-scroll-reverse:hover {
+  animation-play-state: paused;
+}
+
+/* ================== Text Animations ================== */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fadeUp 1s ease forwards;
+  will-change: transform, opacity;
+}
+
+/* ================== Custom Fonts ================== */
 .archivo-black-regular {
   font-family: "Archivo Black", sans-serif;
   font-weight: 400;
-  font-style: normal;
 }
 
 .chango-regular {
   font-family: "Chango", sans-serif;
   font-weight: 400;
-  font-style: normal;
 }
 
 .rubik-bubbles-regular {
   font-family: "Rubik Bubbles", system-ui;
   font-weight: 400;
-  font-style: normal;
 }
 
 .kaushan-script-regular {
   font-family: "Kaushan Script", cursive;
   font-weight: 400;
-  font-style: normal;
 }
 
+.rubik-glitch-regular {
+  font-family: "Rubik Glitch", system-ui;
+  font-weight: 400;
+}
+
+.alfa-slab-one-regular {
+  font-family: "Alfa Slab One", serif;
+  font-weight: 400;
+}
+
+/* ================== Iframe Fullscreen ================== */
 iframe {
   width: 100%;
   height: 100%;
   position: absolute;
-  top: 0;
-  left: 0;
-  object-fit: cover; /* makes it fill like a background image */
+  inset: 0;
+  object-fit: cover;
   pointer-events: none;
 }
-
-
