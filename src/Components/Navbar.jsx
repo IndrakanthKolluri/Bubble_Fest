@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react"; // nice icons
-import Events from "../assets/events.png";
+import Events from "../assets/Events.png";
 import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
