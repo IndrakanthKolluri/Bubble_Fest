@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import collage7 from "../assets/collage7.JPG";
+import collage7 from "../assets/collage7.jpg";
 import image1 from "../assets/image01.JPG";
 import image2 from "../assets/image02.JPG";
 import image3 from "../assets/image03.JPG";
