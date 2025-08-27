@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
-import collage7 from "../assets/collage7.jpg";
-import image1 from "../assets/image01.jpg";
-import image2 from "../assets/image02.jpg";
-import image3 from "../assets/image03.jpg";
-import image4 from "../assets/image04.jpg";
-import image5 from "../assets/image05.jpg";
-import image6 from "../assets/image06.jpg";
-import image7 from "../assets/image07.jpg";
-import image8 from "../assets/image08.jpg";
+import collage7 from "../assets/collage7.JPG";
+import image1 from "../assets/image01.JPG";
+import image2 from "../assets/image02.JPG";
+import image3 from "../assets/image03.JPG";
+import image4 from "../assets/image04.JPG";
+import image5 from "../assets/image05.JPG";
+import image6 from "../assets/image06.JPG";
+import image7 from "../assets/image07.JPG";
+import image8 from "../assets/image08.JPG";
 
 export default function AutoScrollCarousel() {
   const tomaterraImages = [image1, image3, image5, image7];
