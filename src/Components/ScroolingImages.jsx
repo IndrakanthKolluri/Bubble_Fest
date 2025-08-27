@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import collage1 from "../assets/collage4.jpg";
+import collage7 from "../assets/collage7.jpg";
 import image1 from "../assets/image01.jpg";
 import image2 from "../assets/image02.jpg";
 import image3 from "../assets/image03.jpg";
@@ -17,8 +17,11 @@ export default function AutoScrollCarousel() {
     <div className="relative w-full h-full overflow-hidden pb-20">
       {/* Blurred Background */}
       <div
-        className="absolute inset-0 bg-cover bg-center blur-sm brightness-50"
-        style={{ backgroundImage: `url(${collage1})` }}
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: `url(${collage7})`,
+          filter: "blur(8px) brightness(0.6)",
+        }}
       ></div>
 
       {/* Content */}
@@ -41,17 +44,19 @@ export default function AutoScrollCarousel() {
 
         {/* Tomaterra Section */}
         <section className="w-full space-y-12">
-          {/* Scrolling Heading */}
+          {/* Scrolling Heading with Glass Background */}
           <div className="w-full overflow-hidden">
-            <div className="flex w-max animate-scroll gap-12 items-center">
-              {Array(8).fill("Tomaterra").map((text, i) => (
-                <div key={i} className="flex items-center gap-6">
-                  <h2 className="alfa-slab-one-regular text-3xl sm:text-4xl md:text-5xl text-white whitespace-nowrap">
-                    {text}
-                  </h2>
-                  <span className="text-white text-3xl">★</span>
-                </div>
-              ))}
+            <div className="w-full bg-white/20 backdrop-blur-md border border-white/30 shadow-lg py-4">
+              <div className="flex w-max animate-scroll gap-12 items-center">
+                {Array(8).fill("Tomaterra").map((text, i) => (
+                  <div key={i} className="flex items-center gap-6 px-4">
+                    <h2 className="alfa-slab-one-regular text-2xl sm:text-3xl md:text-4xl text-white whitespace-nowrap">
+                      {text}
+                    </h2>
+                    <span className="text-white text-2xl">★</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -64,7 +69,7 @@ export default function AutoScrollCarousel() {
                   src={img}
                   alt={`Tomaterra ${i + 1}`}
                   loading="lazy"
-                  className="w-72 h-48 sm:w-96 sm:h-64 md:w-[32rem] md:h-[20rem] object-cover rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-500"
+                  className="w-72 h-48 sm:w-96 sm:h-64 md:w-[32rem] md:h-[20rem] object-cover rounded-2xl shadow-2xl  transition-transform duration-500"
                 />
               ))}
             </div>
@@ -73,17 +78,19 @@ export default function AutoScrollCarousel() {
 
         {/* Miss World Section */}
         <section className="w-full space-y-12">
-          {/* Scrolling Heading */}
+          {/* Scrolling Heading with Glass Background */}
           <div className="w-full overflow-hidden">
-            <div className="flex w-max animate-scroll-reverse gap-12 items-center">
-              {Array(8).fill("Miss World Visit Show").map((text, i) => (
-                <div key={i} className="flex items-center gap-6">
-                  <h2 className="alfa-slab-one-regular text-3xl sm:text-4xl md:text-5xl text-white whitespace-nowrap">
-                    {text}
-                  </h2>
-                  <span className="text-white text-3xl">★</span>
-                </div>
-              ))}
+            <div className="w-full bg-white/20 backdrop-blur-md border border-white/30 shadow-lg py-4">
+              <div className="flex w-max animate-scroll-reverse gap-12 items-center">
+                {Array(8).fill("Miss World Visit Show").map((text, i) => (
+                  <div key={i} className="flex items-center gap-6 px-4">
+                    <h2 className="alfa-slab-one-regular text-2xl sm:text-3xl md:text-4xl text-white whitespace-nowrap">
+                      {text}
+                    </h2>
+                    <span className="text-white text-2xl">★</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -96,7 +103,7 @@ export default function AutoScrollCarousel() {
                   src={img}
                   alt={`Miss World ${i + 1}`}
                   loading="lazy"
-                  className="w-72 h-48 sm:w-96 sm:h-64 md:w-[32rem] md:h-[20rem] object-cover rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-500"
+                  className="w-72 h-48 sm:w-96 sm:h-64 md:w-[32rem] md:h-[20rem] object-cover rounded-2xl shadow-2xl  transition-transform duration-500"
                 />
               ))}
             </div>

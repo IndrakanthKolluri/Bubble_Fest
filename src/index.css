@@ -59,10 +59,10 @@
 }
 
 /* Pause scrolling on hover */
-.animate-scroll:hover,
+/* .animate-scroll:hover,
 .animate-scroll-reverse:hover {
   animation-play-state: paused;
-}
+} */
 
 /* ================== Text Animations ================== */
 @keyframes fadeUp {

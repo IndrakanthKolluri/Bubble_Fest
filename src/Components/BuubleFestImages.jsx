@@ -1,3 +1,4 @@
+import collage7 from "../assets/collage7.jpg";
 import image1 from "../assets/bubblefest1.jpg";
 import image2 from "../assets/bubblefest2.jpg";
 import image3 from "../assets/bubblefest3.jpg";
@@ -24,7 +25,10 @@ export default function AutoScrollCarousel() {
       {/* Background (blurred) */}
       <div
         className="absolute inset-0 bg-center bg-cover blur-lg brightness-50"
-        style={{ backgroundImage: `url(${image1})` }} // 👈 you can change which image is used
+        style={{
+          backgroundImage: `url(${collage7})`,
+          filter: "blur(8px) brightness(0.6)",
+        }} // Updated to use collage7
       ></div>
 
       {/* Foreground Content */}

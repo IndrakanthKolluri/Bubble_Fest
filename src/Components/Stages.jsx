@@ -38,9 +38,9 @@ export default function Stages() {
       title: "Stage C 🎯",
       color: "from-yellow-400 via-orange-500 to-red-500",
       video:
-        "https://res.cloudinary.com/dwxumbyfg/video/upload/f_auto,q_auto/v1756117447/medium-vecteezy_a-mother-and-her-teenage-daughter-blowing-bubbles_34482268_medium_tlqtfa.mp4",
+        "https://res.cloudinary.com/dwxumbyfg/video/upload/f_auto,q_auto/v1756192366/Gazillion_Bubble_Show_-_Coming_to_Mayo_Performing_Arts_Center_Morristown_NJ_Feb_2024_j3tnos.mp4",
       poster:
-        "https://res.cloudinary.com/dwxumbyfg/video/upload/w_600,q_auto,f_auto/v1756117447/medium-vecteezy_a-mother-and-her-teenage-daughter-blowing-bubbles_34482268_medium_tlqtfa.jpg",
+        "https://res.cloudinary.com/dwxumbyfg/video/upload/w_600,q_auto,f_auto/v1756192366/Gazillion_Bubble_Show_-_Coming_to_Mayo_Performing_Arts_Center_Morristown_NJ_Feb_2024_j3tnos.mp4",
       items: ["Fun Games", "Kids Activities", "Family Competitions", "Interactive Entertainment"],
       description: "Endless laughter and joy for both kids and adults with exciting games and challenges.",
       reverse: false,
@@ -84,7 +84,7 @@ export default function Stages() {
             muted
             playsInline
             preload={preload ? "auto" : "metadata"}
-            className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg"
+            className="absolute inset-0 w-full h-full object-cover shadow-lg"
           >
             <source src={stage.video} type="video/mp4" />
           </video>
